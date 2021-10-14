@@ -12,7 +12,6 @@ class HomeApp extends StatefulWidget {
 }
 
 class _HomeAppState extends State<HomeApp> {
-  final Completer<GoogleMapController> _controller = Completer();
   final HomeController homeController = HomeController();
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,8 @@ class _HomeAppState extends State<HomeApp> {
               ),
               zoom: 18,
             ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+            onMapCreated: (GoogleMapController controller) => homeController.onMapCreated(controller),
+            onLongPress: ,
           ),
           Positioned(
               bottom: 20,
