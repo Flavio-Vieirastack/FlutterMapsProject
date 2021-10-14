@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home_app.dart';
+import 'markers_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const HomeApp(),
+      initialRoute: "/",
+      routes: {
+        "/" : (context) => const HomeApp(),
+        "/markers" : (context) => const MarkersApp(),
+      },
     );
   }
 }

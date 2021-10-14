@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluttermap/home_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeApp extends StatefulWidget {
@@ -12,8 +13,10 @@ class HomeApp extends StatefulWidget {
 
 class _HomeAppState extends State<HomeApp> {
   final Completer<GoogleMapController> _controller = Completer();
+  final HomeController homeController = HomeController();
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Stack(
         children: [
@@ -31,12 +34,15 @@ class _HomeAppState extends State<HomeApp> {
             },
           ),
           Positioned(
-            bottom: 20,
-            left: 130,
-              child: ElevatedButton(
-            onPressed: () {}, //esse botão irá para outra tela
-            child: const Text("Meus marcadores"),
-          ))
+              bottom: 20,
+              left: 130,
+              child: SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () => homeController.navigatorToMarkerPage(context), //esse botão irá para outra tela
+                  child: const Text("Meus marcadores"),
+                ),
+              ))
         ],
       ),
     );
