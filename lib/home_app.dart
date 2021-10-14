@@ -15,20 +15,30 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(
-            -7.232398248532804,
-            -39.41431116724223, //posição inicial do mapa
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: const CameraPosition(
+              target: LatLng(
+                -7.232398248532804,
+                -39.41431116724223, //posição inicial do mapa
+              ),
+              zoom: 18,
+            ),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
           ),
-          zoom: 18,
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+          Positioned(
+            bottom: 20,
+            left: 130,
+              child: ElevatedButton(
+            onPressed: () {}, //esse botão irá para outra tela
+            child: const Text("Meus marcadores"),
+          ))
+        ],
       ),
     );
-    
   }
 }
